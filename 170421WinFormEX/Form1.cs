@@ -25,34 +25,20 @@ namespace _170421WinFormEX
                 FontSize = 10,
                 Pt = new Point(0, 0)
             };
-
+            ColorChanged();
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             using (Graphics gp = this.CreateGraphics())
             {
-                gp.TranslateTransform(0, 30);
-                Font font = new Font(this.Font.Name, dt.FontSize, FontStyle.Bold);
-                gp.DrawString(dt.Str, font, new SolidBrush(dt.Co), dt.Pt);
-                this.BackColor = Color.FromArgb(dt.Co.R ^ 255, dt.Co.G ^ 255, dt.Co.B ^ 255);
-
                 Bitmap bmp = new Bitmap(25, 25);
                 Rectangle rect = new Rectangle(0, 0, 25, 25);
 
-                using (Graphics gpbmp = Graphics.FromImage(bmp))
-                {
-                    gpbmp.FillRectangle(Brushes.Red, rect);
-                    this.빨간색RToolStripMenuItem.Image = new Bitmap(bmp);
-                    gpbmp.FillRectangle(Brushes.Green, rect);
-                    this.녹색GToolStripMenuItem.Image = new Bitmap(bmp);
-                    gpbmp.FillRectangle(Brushes.Blue, rect);
-                    this.파란색BToolStripMenuItem.Image = new Bitmap(bmp);
-                    gpbmp.FillRectangle(new SolidBrush(Color.FromArgb(dt.Co.R ^ 255, dt.Co.G ^ 255, dt.Co.B ^ 255)), rect);
-                    gpbmp.DrawRectangle(new Pen(Color.Black,4), rect);
-                    gpbmp.DrawString("U", new Font(this.Font.Name, 15,FontStyle.Bold), new SolidBrush(dt.Co), 2, 2.5f);
-                    this.색상공통다이얼로그DToolStripMenuItem.Image = new Bitmap(bmp);
-                }
+                gp.TranslateTransform(0, 30);
+                //Bitmap  bmpString = new Bitmap()
+                Font font = new Font("궁서체", dt.FontSize, FontStyle.Bold);
+                gp.DrawString(dt.Str, font, new SolidBrush(dt.Co), dt.Pt);
             }
         }
 
@@ -76,18 +62,21 @@ namespace _170421WinFormEX
         private void 빨간색RToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dt.Co = Color.FromArgb(255, 0, 0);
+            ColorChanged();
             Invalidate();
         }
 
         private void 녹색GToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dt.Co = Color.FromArgb(0, 255, 0);
+            ColorChanged();
             Invalidate();
         }
 
         private void 파란색BToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dt.Co = Color.FromArgb(0, 0, 255);
+            ColorChanged();
             Invalidate();
         }
 
@@ -123,6 +112,7 @@ namespace _170421WinFormEX
             if (cdlg.ShowDialog() == DialogResult.OK)
             {
                 dt.Co = cdlg.Color;
+                ColorChanged();
                 Invalidate();
             }
         }
@@ -130,6 +120,36 @@ namespace _170421WinFormEX
         private void TM_1_Tick(object sender, EventArgs e)
         {
             this.Text = DateTime.Now.ToString();
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                dt.Pt = new Point(e.X, e.Y - 30);
+                Invalidate();
+            }
+        }
+
+        private void ColorChanged()
+        {
+            this.BackColor = Color.FromArgb(dt.Co.R ^ 255, dt.Co.G ^ 255, dt.Co.B ^ 255);
+            Bitmap bmp = new Bitmap(25, 25);
+            Rectangle rect = new Rectangle(0, 0, 25, 25);
+
+            using (Graphics gpbmp = Graphics.FromImage(bmp))
+            {
+                gpbmp.FillRectangle(Brushes.Red, rect);
+                this.빨간색RToolStripMenuItem.Image = new Bitmap(bmp);
+                gpbmp.FillRectangle(Brushes.Green, rect);
+                this.녹색GToolStripMenuItem.Image = new Bitmap(bmp);
+                gpbmp.FillRectangle(Brushes.Blue, rect);
+                this.파란색BToolStripMenuItem.Image = new Bitmap(bmp);
+                gpbmp.FillRectangle(new SolidBrush(Color.FromArgb(dt.Co.R ^ 255, dt.Co.G ^ 255, dt.Co.B ^ 255)), rect);
+                gpbmp.DrawRectangle(new Pen(Color.Black, 4), rect);
+                gpbmp.DrawString("U", new Font(this.Font.Name, 15, FontStyle.Bold), new SolidBrush(dt.Co), 2, 2.5f);
+                this.색상공통다이얼로그DToolStripMenuItem.Image = new Bitmap(bmp);
+            }
         }
     }
 }

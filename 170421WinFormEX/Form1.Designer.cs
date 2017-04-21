@@ -87,21 +87,21 @@
             this.빨간색RToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.빨간색RToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.빨간색RToolStripMenuItem.Name = "빨간색RToolStripMenuItem";
-            this.빨간색RToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.빨간색RToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.빨간색RToolStripMenuItem.Text = "빨간색(R)";
             this.빨간색RToolStripMenuItem.Click += new System.EventHandler(this.빨간색RToolStripMenuItem_Click);
             // 
             // 녹색GToolStripMenuItem
             // 
             this.녹색GToolStripMenuItem.Name = "녹색GToolStripMenuItem";
-            this.녹색GToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.녹색GToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.녹색GToolStripMenuItem.Text = "녹   색(G)";
             this.녹색GToolStripMenuItem.Click += new System.EventHandler(this.녹색GToolStripMenuItem_Click);
             // 
             // 파란색BToolStripMenuItem
             // 
             this.파란색BToolStripMenuItem.Name = "파란색BToolStripMenuItem";
-            this.파란색BToolStripMenuItem.Size = new System.Drawing.Size(250, 26);
+            this.파란색BToolStripMenuItem.Size = new System.Drawing.Size(259, 26);
             this.파란색BToolStripMenuItem.Text = "파란색(B)";
             this.파란색BToolStripMenuItem.Click += new System.EventHandler(this.파란색BToolStripMenuItem_Click);
             // 
@@ -123,7 +123,7 @@
             // 모달MToolStripMenuItem
             // 
             this.모달MToolStripMenuItem.Name = "모달MToolStripMenuItem";
-            this.모달MToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.모달MToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.모달MToolStripMenuItem.Text = "모달(M)...";
             this.모달MToolStripMenuItem.Click += new System.EventHandler(this.모달MToolStripMenuItem_Click);
             // 
@@ -145,6 +145,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MENUSTRIP_1.ResumeLayout(false);
             this.MENUSTRIP_1.PerformLayout();
             this.ResumeLayout(false);

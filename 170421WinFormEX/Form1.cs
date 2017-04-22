@@ -26,20 +26,17 @@ namespace _170421WinFormEX
                 Pt = new Point(0, 0)
             };
             ColorChanged();
+
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            using (Graphics gp = this.CreateGraphics())
-            {
-                Bitmap bmp = new Bitmap(25, 25);
-                Rectangle rect = new Rectangle(0, 0, 25, 25);
-
-                gp.TranslateTransform(0, 30);
-                //Bitmap  bmpString = new Bitmap()
-                Font font = new Font("궁서체", dt.FontSize, FontStyle.Bold);
-                gp.DrawString(dt.Str, font, new SolidBrush(dt.Co), dt.Pt);
-            }
+            
         }
 
         private void 종료XToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,7 +82,16 @@ namespace _170421WinFormEX
             if(e.Button == MouseButtons.Left)
             {
                 dt.Pt = new Point(e.X,e.Y-30);
-                Invalidate();
+                BufferedGraphicsContext curContext = BufferedGraphicsManager.Current;
+                using (BufferedGraphics gp = curContext.Allocate(this.CreateGraphics(), this.DisplayRectangle))
+                {
+                    gp.Graphics.TranslateTransform(0, 30);
+                    gp.Graphics.Clear(this.BackColor);
+                    Font font = new Font("궁서체", dt.FontSize, FontStyle.Bold);
+                    gp.Graphics.DrawString(dt.Str, font, new SolidBrush(dt.Co), dt.Pt);
+                    gp.Render(this.CreateGraphics());
+                }
+                //Invalidate();
             }
         }
 
@@ -127,7 +133,16 @@ namespace _170421WinFormEX
             if (e.Button == MouseButtons.Left)
             {
                 dt.Pt = new Point(e.X, e.Y - 30);
-                Invalidate();
+                BufferedGraphicsContext curContext = BufferedGraphicsManager.Current;
+                using (BufferedGraphics gp = curContext.Allocate(this.CreateGraphics(), this.DisplayRectangle))
+                {
+                    gp.Graphics.TranslateTransform(0, 30);
+                    gp.Graphics.Clear(this.BackColor);
+                    Font font = new Font("궁서체", dt.FontSize, FontStyle.Bold);
+                    gp.Graphics.DrawString(dt.Str, font, new SolidBrush(dt.Co), dt.Pt);
+                    gp.Render(this.CreateGraphics());
+                }
+                //Invalidate();
             }
         }
 
